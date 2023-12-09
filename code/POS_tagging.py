@@ -60,8 +60,6 @@ spacy_nlp = spacy.load("en_core_web_sm")
 stanza_nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos')
 
 
-
-
 df_train = pd.read_json("data/train.json")
 X_train = df_train['sentence'].tolist()[:50]
 Y_train = df_train['labels'].tolist()[:50]
@@ -173,17 +171,17 @@ def get_accuracy(results):
 
 
 spacy_accuracy = get_accuracy(spacy_pos_tagging_results)
-print(f"spaCy Accuracy: {total_score / total}\nspaCy runtime: {spacy_dur}s")
+print(f"spaCy Accuracy: {spacy_accuracy}\nspaCy runtime: {spacy_dur}s")
 
 
 stanza_dur, stanza_pos_tagging_results = run_stanza_pos_tagging()
 stanza_accuracy = get_accuracy(stanza_pos_tagging_results)
 
-print(f"Stanza Accuracy: {total_score / total}\nStanza runtime: {stanza_dur}s")
+print(f"Stanza Accuracy: {stanza_accuracy}\nStanza runtime: {stanza_dur}s")
 
 ibm_watson_dur, ibm_watson_pos_tagging_results = run_ibm_watson_pos_tagging()
 
 ibm_watson_accuracy = get_accuracy(ibm_watson_pos_tagging_results)
 
 print(
-    f"IBM Watson Accuracy: {total_score / total}\nIBM Watson runtime: {ibm_watson_dur}s")
+    f"IBM Watson Accuracy: {ibm_watson_accuracy}\nIBM Watson runtime: {ibm_watson_dur}s")
