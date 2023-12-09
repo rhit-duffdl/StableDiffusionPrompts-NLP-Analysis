@@ -37,13 +37,9 @@ prompt_sentences = sampled['0'].tolist()
 
 spacy_nlp = spacy.load("en_core_web_sm")
 stanza_nlp = stanza.Pipeline(lang='en', processors='tokenize,ner')
-api_key = "YOUR_API_KEY_HERE"
-url = "YOUR_URL_HERE"
 
 
 def spacy_ner(text):
-    """Extracts named entities from a text using spaCy."""
-
     doc = spacy_nlp(text)
 
     entitities = [(entity.text, entity.label_) for entity in doc.ents]
@@ -63,8 +59,6 @@ def run_spacy_ner():
 
 
 def stanza_ner(text):
-    """Extracts named entities from a text using Stanza."""
-
     doc = stanza_nlp(text)
 
     entities = []
@@ -124,11 +118,11 @@ ibm_watson_dur, ibm_watson_results = run_ibm_watson_ner()
 print(f"IBM Watson: {ibm_watson_dur}s")
 
 
-with open('data/spacy_results.json', 'w') as outfile:
+with open('data/spacy_ner_results.json', 'w') as outfile:
     outfile.write(json.dumps(spacy_results, indent=4))
 
-with open('data/stanza_results.json', 'w') as outfile:
+with open('data/stanza_ner_results.json', 'w') as outfile:
     outfile.write(json.dumps(stanza_results, indent=4))
 
-with open('data/ibm_watson_results.json', 'w') as outfile:
+with open('data/ibm_watson_ner_results.json', 'w') as outfile:
     outfile.write(json.dumps(ibm_watson_results, indent=4))

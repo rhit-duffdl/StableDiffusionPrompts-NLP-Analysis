@@ -17,7 +17,6 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.natural_language_understanding_v1 import Features, SyntaxOptions, SyntaxOptionsTokens
 
 
-
 ptb_to_upos = {
     'VB': 'VERB',   # Verb, base form
     '.': 'PUNCT',   # Punctuation
@@ -172,7 +171,6 @@ def get_accuracy(results):
 
 spacy_accuracy = get_accuracy(spacy_pos_tagging_results)
 print(f"spaCy Accuracy: {spacy_accuracy}\nspaCy runtime: {spacy_dur}s")
-
 
 stanza_dur, stanza_pos_tagging_results = run_stanza_pos_tagging()
 stanza_accuracy = get_accuracy(stanza_pos_tagging_results)
